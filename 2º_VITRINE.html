@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vitrine Esportes | Sua paixão pelo futebol</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: white;
+}
+
+/* MENU */
+header {
+    background: #111;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #ffe000;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffe000;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 22px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #ffe000;
+}
+
+/* BANNER */
+.hero {
+    min-height: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    background:
+    linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.85)),
+    url("Icone.jpg") center/cover;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 6vw, 65px);
+    color: #ffe000;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 19px;
+    margin-bottom: 30px;
+    color: #ddd;
+}
+
+.botao {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #ffe000;
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.botao:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+/* SEÇÕES */
+section {
+    padding: 70px 8%;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 15px;
+    color: #ffe000;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+
+/* CATEGORIAS & CARROSSEL */
+.categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 25px;
+}
+
+.categoria {
+    background: #151515;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    transition: .3s;
+    border: 1px solid #252525;
+}
+
+.categoria:hover {
+    transform: translateY(-8px);
+    border-color: #ffe000;
+}
+
+/* Container do Carrossel dentro da Categoria */
+.carrossel {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.foto-categoria {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+.foto-categoria.ativa {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Botões do Carrossel */
+.btn-carrossel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffe000;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 16px;
+    z-index: 10;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-carrossel:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.btn-carrossel.prev { left: 15px; }
+.btn-carrossel.next { right: 15px; }
+
+.categoria h3 {
+    padding: 20px;
+}
+
+/* PRODUTOS */
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 25px;
+}
+
+.produto {
+    background: #151515;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 25px;
+    transition: .3s;
+    border: 1px solid #252525;
+}
+
+.produto:hover {
+    transform: translateY(-8px);
+    border-color: #ffe000;
+}
+
+.produto img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.produto h3 {
+    margin: 15px 0;
+}
+
+.preco {
+    color: #ffe000;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.produto a {
+    display: inline-block;
+    background: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+/* PROMOÇÃO */
+.promocao {
+    text-align: center;
+    background: linear-gradient(120deg,#161616,#292000);
+    border-top: 2px solid #ffe000;
+    border-bottom: 2px solid #ffe000;
+}
+
+.promocao h2 {
+    font-size: 35px;
+    color: #ffe000;
+    margin-bottom: 20px;
+}
+
+/* AVALIAÇÕES */
+.avaliacoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+}
+
+.avaliacao {
+    background: #171717;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #333;
+}
+
+.estrelas {
+    color: #ffe000;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+/* ASSISTENTE */
+.assistente {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffe000;
+    color: black;
+    padding: 17px;
+    border-radius: 50%;
+    font-size: 25px;
+    text-decoration: none;
+    box-shadow: 0 0 20px #ffe00066;
+    z-index: 1001;
+}
+
+/* CONTATO */
+.contato {
+    text-align: center;
+    background: #111;
+}
+
+.contato p {
+    color: #ccc;
+    margin: 12px;
+}
+
+.contato a {
+    color: #ffe000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* RODAPÉ */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #050505;
+    color: #888;
+    border-top: 1px solid #333;
+}
+
+/* CELULAR */
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0;
+        font-size: 13px;
+    }
+
+    .hero {
+        min-height: 450px;
+    }
+
+    section {
+        padding: 50px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">👑 VITRINE ESPORTES</div>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#produtos">Camisas</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#contato">Contato</a>
+    </nav>
+</header>
+
+<!-- INÍCIO -->
+<section class="hero" id="inicio">
+    <div>
+        <h1>SUA PAIXÃO PELO FUTEBOL COMEÇA AQUI!</h1>
+
+        <p>
+            Encontre camisas incríveis dos seus times
+            e seleções favoritas.
+        </p>
+
+        <a href="#produtos" class="botao">
+            CONFERIR DESTAQUES
+        </a>
+    </div>
+</section>
+
+<!-- CATEGORIAS -->
+<section id="categorias">
+
+    <h2 class="titulo">NOSSAS CATEGORIAS</h2>
+
+    <p class="subtitulo">
+        Vista as cores da sua paixão!
+    </p>
+
+    <div class="categorias">
+
+        <!-- Categoria 1 (Com Carrossel de Imagens) -->
+        <div class="categoria" id="cat-selecoes">
+            <div class="carrossel">
+                <img src="icon.jpg" alt="Camisas de seleções" class="foto-categoria ativa">
+                <img src="Portugal.jpg" alt="Seleção 2" class="foto-categoria">
+                <img src="Icone.jpg" alt="Seleção 3" class="foto-categoria">
+
+                <button class="btn-carrossel prev" onclick="mudarImagem('cat-selecoes', -1)">❮</button>
+                <button class="btn-carrossel next" onclick="mudarImagem('cat-selecoes', 1)">❯</button>
+            </div>
+            <h3>🌎 Seleções</h3>
+        </div>
+
+        <!-- Categoria 2 (Com Carrossel de Imagens) -->
+        <div class="categoria" id="cat-brasileiros">
+            <div class="carrossel">
+                <img src="Diversos.jpg" alt="Times brasileiros" class="foto-categoria ativa">
+                <img src="Vasco.jfif" alt="Times brasileiros 2" class="foto-categoria">
+                <img src="Galo.jfif" alt="Times brasileiros 3" class="foto-categoria">
+
+                <button class="btn-carrossel prev" onclick="mudarImagem('cat-brasileiros', -1)">❮</button>
+                <button class="btn-carrossel next" onclick="mudarImagem('cat-brasileiros', 1)">❯</button>
+            </div>
+            <h3>🇧🇷 Times Brasileiros</h3>
+        </div>
+
+        <!-- Categoria 3 (Com Carrossel de Imagens) -->
+        <div class="categoria" id="cat-estrangeiros">
+            <div class="carrossel">
+                <img src="bayer.jpg" alt="Times estrangeiros" class="foto-categoria ativa">
+                <img src="Real.jpg" alt="Times estrangeiros 2" class="foto-categoria">
+                <img src="Arsenal2.jfif" alt="Times estrangeiros 3" class="foto-categoria">
+
+                <button class="btn-carrossel prev" onclick="mudarImagem('cat-estrangeiros', -1)">❮</button>
+                <button class="btn-carrossel next" onclick="mudarImagem('cat-estrangeiros', 1)">❯</button>
+            </div>
+            <h3>🏆 Times Estrangeiros</h3>
+        </div>
+
+    </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+
+    <h2 class="titulo">CAMISAS EM DESTAQUE</h2>
+
+    <p class="subtitulo">
+        Escolha seu modelo favorito!
+    </p>
+
+    <div class="produtos">
+
+        <div class="produto">
+            <img src="Icone.jpg" alt="Camisa Brasil">
+            <h3>Camisa Seleção Brasileira</h3>
+            <p class="preco">Consulte o preço</p>
+            <a href="https://wa.me/5500000000000?text=Olá! Quero saber o preço da camisa do Brasil.">
+                Comprar pelo WhatsApp
+            </a>
+        </div>
+
+        <div class="produto">
+            <img src="Portugal.jpg" alt="Camisa Portugal">
+            <h3>Camisa Seleção Portuguesa</h3>
+            <p class="preco">Consulte o preço</p>
+            <a href="https://wa.me/5500000000000?text=Olá! Quero saber o preço da camisa de Portugal.">
+                Comprar pelo WhatsApp
+            </a>
+        </div>
+
+        <div class="produto">
+            <img src="Milan_2026.jfif" alt="Camisa Milan">
+            <h3>Camisa Milan</h3>
+            <p class="preco">Consulte o preço</p>
+            <a href="https://wa.me/5500000000000?text=Olá! Quero saber o preço da camisa do Milan.">
+                Comprar pelo WhatsApp
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- PROMOÇÃO -->
+<section class="promocao">
+
+    <h2>🔥 OFERTAS ESPECIAIS!</h2>
+
+    <p>
+        Não perca a oportunidade de garantir sua camisa favorita!
+    </p>
+
+    <br>
+
+    <img src="promo.jfif"
+         alt="Promoção Vitrine Esportes"
+         style="width:100%;max-width:500px;border-radius:15px;">
+
+</section>
+
+<!-- AVALIAÇÕES -->
+<section id="avaliacoes">
+
+    <h2 class="titulo">AVALIAÇÕES DOS CLIENTES</h2>
+
+    <p class="subtitulo">
+        Confira o que estão falando da Vitrine Esportes!
+    </p>
+
+    <div class="avaliacoes">
+
+        <div class="avaliacao">
+            <div class="estrelas">★★★★★</div>
+            <h3>Alto Padrão!</h3>
+            <p>— Zagueiro Argentino</p>
+        </div>
+
+        <div class="avaliacao">
+            <div class="estrelas">★★★★★</div>
+            <h3>Qualidade Extrema!</h3>
+            <p>— Capitão de Marrocos</p>
+        </div>
+
+        <div class="avaliacao">
+            <div class="estrelas">★★★★★</div>
+            <h3>Modelos incríveis!</h3>
+            <p>— Atacante Espanhol</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+
+    <h2 class="titulo">CONTATO E ATENDIMENTO</h2>
+
+    <p>📅 Atendimento de segunda a sábado</p>
+
+    <p>📱 Suporte via WhatsApp</p>
+
+    <p>
+        📸 Instagram:
+        <a href="https://www.instagram.com/marques_club/"
+           target="_blank">
+            @marques_club
+        </a>
+    </p>
+
+    <p>
+        ⚽ Vitrine Esportes — Sua paixão pelo futebol!
+    </p>
+
+</section>
+
+<!-- BOTÃO WHATSAPP -->
+<a class="assistente"
+   href="https://wa.me/5500000000000?text=Olá! Vim pelo site Vitrine Esportes."
+   target="_blank"
+   aria-label="Fale conosco pelo WhatsApp">
+    ☎
+</a>
+
+<footer>
+    <p>© 2026 Vitrine Esportes - Todos os direitos reservados.</p>
+    <p>Feito com paixão pelo futebol ⚽</p>
+</footer>
+
+<!-- SCRIPT DO CARROSSEL -->
+<script>
+function mudarImagem(categoriaId, direcao) {
+    const container = document.getElementById(categoriaId);
+    const imagens = container.querySelectorAll('.foto-categoria');
+    let indexAtual = Array.from(imagens).findIndex(img => img.classList.contains('ativa'));
+
+    // Remove a classe 'ativa' da imagem atual
+    imagens[indexAtual].classList.remove('ativa');
+
+    // Calcula o novo índice fazendo o ciclo infinito
+    let novoIndex = indexAtual + direcao;
+    if (novoIndex >= imagens.length) novoIndex = 0;
+    if (novoIndex < 0) novoIndex = imagens.length - 1;
+
+    // Adiciona a classe 'ativa' na nova imagem
+    imagens[novoIndex].classList.add('ativa');
+}
+</script>
+
+</body>
+</html>
