@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status do Dev - Bootstrap & JS</title>
+    <!-- Bootstrap 5 CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+
+    <!-- Card do Bootstrap -->
+    <div class="card shadow bg-primary text-white" style="width: 20rem;" id="cardStatus">
+        <img src="https://placehold.co/600x400/0d6efd/ffffff?text=A+Todo+o+Vapor" class="card-img-top" alt="Status Dev" id="imgStatus">
+        <div class="card-body text-center">
+            <h5 class="card-title" id="tituloStatus">🏁🏎💭 A todo o vapor</h5>
+            <p class="card-text" id="textoStatus">Código limpo, zero erros e produtividade no máximo!</p>
+            <button class="btn btn-light w-100 fw-bold" id="btnMudarStatus">Mudar Status</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const card = document.getElementById('cardStatus');
+        const imagem = document.getElementById('imgStatus');
+        const titulo = document.getElementById('tituloStatus');
+        const texto = document.getElementById('textoStatus');
+        const botao = document.getElementById('btnMudarStatus');
+
+        // Lista de estados possíveis
+        const estados = [
+            {
+                titulo: "🏁🏎💭 A todo o vapor",
+                texto: "Código limpo, zero erros e produtividade no máximo!",
+                corCard: "bg-primary",
+                corTexto: "text-white",
+                img: "https://placehold.co/600x400/0d6efd/ffffff?text=A+Todo+o+Vapor"
+            },
+            {
+                titulo: "☕ A precisar de café",
+                texto: "Sem a pausa pro café não vai !",
+                corCard: "bg-warning",
+                corTexto: "text-dark",
+                img: "https://placehold.co/600x400/ffc107/000000?text=Pausa+para+Café"
+            },
+            {
+                titulo: "🤯 Bug, TRAVOU!",
+                texto: "Funcionava perfeitamente ontem... o que aconteceu?!",
+                corCard: "bg-danger",
+                corTexto: "text-white",
+                img: "https://placehold.co/600x400/dc3545/ffffff?text=Alerta+de+Bug"
+            }
+        ];
+
+        let indiceAtual = 0;
+
+        botao.addEventListener('click', () => {
+            // Remove as classes de cor atuais antes de aplicar as novas
+            card.classList.remove(estados[indiceAtual].corCard, estados[indiceAtual].corTexto);
+
+            // Avança para o próximo estado (volta ao 0 quando chega ao fim)
+            indiceAtual = (indiceAtual + 1) % estados.length;
+
+            // Atualiza os elementos com os dados do novo estado
+            const novoEstado = estados[indiceAtual];
+            titulo.innerText = novoEstado.titulo;
+            texto.innerText = novoEstado.texto;
+            imagem.src = novoEstado.img;
+            card.classList.add(novoEstado.corCard, novoEstado.corTexto);
+        });
+    </script>
+</body>
+</html>
